@@ -1,13 +1,20 @@
 from application.salary import calculate_salary
 from application.application.db.people import get_employees
-from datetime import datetime
+from datetime import date
+from textual_datepicker import DateSelect
 
-def current_time():
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    print("CUrrent Time: ", current_time)
+DateSelect(
+  placeholder="please select",
+  format="YYYY-MM-DD",
+  picker_mount="#main_container"
+)
+
+def show_date():
+    t = date.today()
+    print(t.strftime('Дата: %d.%m.%Y'))
 
 if __name__ == "__main__":
-    current_time()
+    show_date()
     get_employees()
     calculate_salary()
+    
