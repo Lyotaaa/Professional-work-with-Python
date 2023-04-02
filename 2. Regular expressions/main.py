@@ -1,33 +1,18 @@
-class FlatIterator:
+from pprint import pprint
+## Читаем адресную книгу в формате CSV в список contacts_list:
+import csv
+with open("phonebook_raw.csv") as f:
+  rows = csv.reader(f, delimiter=",")
+  contacts_list = list(rows)
+pprint(contacts_list)
 
-    def __init__(self, list_of_list):
-        ...
+## 1. Выполните пункты 1-3 задания.
+## Ваш код
 
-    def __iter__(self):
-        ...
-        return self
-
-    def __next__(self):
-        ...
-        return item
-    
-def test_1():
-
-    list_of_lists_1 = [
-        ['a', 'b', 'c'],
-        ['d', 'e', 'f', 'h', False],
-        [1, 2, None]
-    ]
-
-    for flat_iterator_item, check_item in zip(
-            FlatIterator(list_of_lists_1),
-            ['a', 'b', 'c', 'd', 'e', 'f', 'h', False, 1, 2, None]
-    ):
-
-        assert flat_iterator_item == check_item
-
-    assert list(FlatIterator(list_of_lists_1)) == ['a', 'b', 'c', 'd', 'e', 'f', 'h', False, 1, 2, None]
-
-
-if __name__ == '__main__':
-    test_1()    
+## 2. Сохраните получившиеся данные в другой файл.
+## Код для записи файла в формате CSV:
+with open("phonebook.csv", "w") as f:
+  datawriter = csv.writer(f, delimiter=',')
+  
+## Вместо contacts_list подставьте свой список:
+  datawriter.writerows(contacts_list)
