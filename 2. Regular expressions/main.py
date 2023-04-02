@@ -10,7 +10,7 @@ pprint(contacts_list)
 
 # 2. Сохраните получившиеся данные в другой файл.
 # Код для записи файла в формате CSV:
-with open("phonebook.csv", "w") as f:
+with open("phonebook.csv", "w", encoding="utf8") as f:
     datawriter = csv.writer(f, delimiter=',')
 # Вместо contacts_list подставьте свой список:
     datawriter.writerows(contacts_list)
