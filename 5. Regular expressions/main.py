@@ -58,10 +58,10 @@ def write_file(folder_name, file_name, finish_list):
         datawriter.writerows(finish_list)
 
 if __name__ == '__main__':
-    file = find_file('2. Regular expressions', 'phonebook_raw.csv')
+    file = find_file('5. Regular expressions', 'phonebook_raw.csv')
     contacts_list = open_file(file)
     normal_phone = change_phone(contacts_list)
     normal_view = view_normalization(normal_phone)
     finish_list = save_contacts_list(normal_view)
     # print(*finish_list,sep="\n")
-    write_file('2. Regular expressions', 'phonebook.csv', finish_list)
+    write_file('5. Regular expressions', 'phonebook.csv', finish_list)
