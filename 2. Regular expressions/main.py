@@ -57,7 +57,6 @@ def write_file(folder_name, file_name, finish_list):
         datawriter = csv.writer(f, delimiter=',')
         datawriter.writerows(finish_list)
 
-
 if __name__ == '__main__':
     file = find_file('2. Regular expressions', 'phonebook_raw.csv')
     contacts_list = open_file(file)
