@@ -3,7 +3,6 @@ import os
 import csv
 from re import sub
 import re
-from textual_datepicker import DateSelect
 
 def find_file(folder_name, file_name):
     current = os.getcwd()
@@ -55,7 +54,7 @@ def write_file(folder_name, file_name, finish_list):
     current = os.getcwd()
     full_path = os.path.join(current, folder_name, file_name)
     with open(full_path, "w", encoding="utf8") as f:
-        datawriter = csv.writer(f, delimiter='|')
+        datawriter = csv.writer(f, delimiter=',')
         datawriter.writerows(finish_list)
 
 
