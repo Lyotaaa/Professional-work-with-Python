@@ -1,9 +1,7 @@
 import requests
 from fake_headers import Headers
 from bs4 import BeautifulSoup
-from pprint import pprint
 from tqdm import tqdm
-import time
 import re
 import os
 import json
