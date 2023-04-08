@@ -1,0 +1,5 @@
+beautifulsoup4==4.12.2
+fake_headers==1.0.2
+requests==2.28.1
+textual_datepicker==0.2.2
+tqdm==4.64.1
