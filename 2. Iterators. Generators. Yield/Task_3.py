@@ -1,6 +1,3 @@
-import tqdm
-
-
 class FlatIterator:
     def __init__(self, list_of_list):
         self.list_of_list = list_of_list
