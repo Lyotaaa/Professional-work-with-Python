@@ -1,27 +1,44 @@
 class FlatIterator:
+    # Вариант № 1
     def __init__(self, list_of_list):
-        self.list_of_list = list_of_list
+        self.list_of_list = list(reversed(list_of_list))
 
     def __iter__(self):
-        self.iterator = [iter(self.list_of_list)]
-        self.result = []
         return self
 
     def __next__(self):
-        while self.iterator:
-            i = self.iterator.pop()
-            try:
-                while True:
-                    data = next(i)
-                    if isinstance(data, list):
-                        self.iterator.append(i)
-                        i = iter(data)
-                    else:
-                        self.result.append(data)
-            except StopIteration:
-                pass
+        while self.list_of_list:
+            self.item = self.list_of_list.pop()
+            if not isinstance(self.item, list):
+                return self.item
+            for i in reversed(self.item):
+                self.list_of_list.append(i)
+        raise StopIteration
 
-        return self.result
+    # Вариант № 2
+    # def __init__(self, list_of_list):
+    #     self.list_of_list = list_of_list
+
+    # def __iter__(self):
+    #     self.iterator = iter(self.list_of_list)
+    #     self.result = []
+    #     return self
+
+    # def __next__(self):
+    #     while True:
+    #         try:
+    #             self.item = next(self.iterator)
+    #         except StopIteration:
+    #             if not self.result:
+    #                 raise StopIteration
+    #             else:
+    #                 self.iterator = self.result.pop()
+    #                 continue
+    #         if isinstance(self.item, list):
+    #             self.result.append(self.iterator)
+    #             self.iterator = iter(self.item)
+    #         else:
+    #             return self.item
 
 
 def test_3():
