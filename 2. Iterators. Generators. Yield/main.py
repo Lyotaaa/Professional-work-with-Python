@@ -6,6 +6,6 @@ from Task_4 import test_4
 if __name__ == "__main__":
     test_1()
     test_2()
-    test_4()
-    """И тут я зашёл в тупик! Подскажите, что не так."""
     test_3()
+    test_4()
+    
