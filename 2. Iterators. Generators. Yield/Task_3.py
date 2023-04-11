@@ -64,6 +64,7 @@ class FlatIterator:
     #             return next_item
     #     raise StopIteration
 
+
 def test_3():
     list_of_lists_2 = [
         [["a"], ["b", "c"]],
