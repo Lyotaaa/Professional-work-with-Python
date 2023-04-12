@@ -1,0 +1,6 @@
+Дата вызова: 12.04.2023
+Время вызова: 18:39:25.097050
+Имя функции: startup
+Аргументы: () {}
+Результат: [{'link': 'https://spb.hh.ru/vacancy/78926884?from=vacancy_search_list&query=python', 'salary': '70\u202f000 – 100\u202f000 руб.', 'name_company': 'РусЭкспресс', 'city': 'Москва'}, {'link': 'https://spb.hh.ru/vacancy/79051528?from=vacancy_search_list&query=python', 'salary': 'от 100\u202f000 руб.', 'name_company': 'Own Script', 'city': 'Москва'}]
+
