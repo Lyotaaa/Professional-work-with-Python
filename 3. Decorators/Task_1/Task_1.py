@@ -19,7 +19,7 @@ def logger(old_function):
             f"Результат: {result}\n\n"
         )
         with open(
-            building_path("3. Decorators", "main.log"), "a", encoding="utf8"
+            building_path("3. Decorators\Task_1", "main.log"), "a", encoding="utf8"
         ) as wrt:
             wrt.write(writing_to_file)
         return result
@@ -28,7 +28,7 @@ def logger(old_function):
 
 
 def test_1():
-    path = building_path("3. Decorators", "main.log")
+    path = building_path("3. Decorators\Task_1", "main.log")
     if os.path.exists(path):
         os.remove(path)
 
