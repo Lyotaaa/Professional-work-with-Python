@@ -7,7 +7,7 @@ import os
 import json
 from Task_3.Task_3 import logger
 
-
+@logger("log_0.log")
 def get_headers():
     return Headers(browser="chrome", os="win").generate()
 
