@@ -1,3 +1,5 @@
+import sys
+
 documents = [
     {"type": "passport", "number": "2207 876234", "name": "Василий Гупкин"},
     {"type": "invoice", "number": "11-2", "name": "Геннадий Покемонов"},
@@ -47,15 +49,16 @@ def add_new_document(documents, directories):
     owner_name = input("Введите владельца: ")
     target_shelf = input("Ведите номер полки: ")
     if target_shelf not in directories:
-        print(f"Такой полки не существует, повторите запрос.")
-        # add_new_document(documents, directories)
+        return "Такой полки не существует, повторите запрос."
     elif target_shelf in directories:
         documents.append(
             {"type": type_document, "number": document_number, "name": owner_name}
         )
         directories[target_shelf].append(document_number)
-        print(f"Документ добавлен на полку № {target_shelf}: {directories}")
-        print(f"Документ добавлен в католог:", *documents, sep="\n")
+        print("Документ добавлен в католог:", *documents, sep="\n")
+        return "Документ добавлен на полку № {}:\nСписок полок:\n{}".format(
+            target_shelf, directories
+        )
 
 
 def delete_document(documents, directories):
@@ -63,17 +66,16 @@ def delete_document(documents, directories):
     for key, value in directories.items():
         if document_number in directories[key]:
             directories[key].remove(document_number)
-            print(f"Данные удалины из перечня полок: {directories}")
+            res_1 = True
             break
     for i in documents:
         if i["number"] == document_number:
             documents.remove(i)
-            print(f"Данные удалены из католога:", *documents, sep="\n")
+            res_2 = True
             break
-
     else:
-        print(f"Документ № {document_number} отсутствует в базе, повторите запрос.")
-        # delete_document(documents, directories)
+        res_1, res_2 = False, False
+    return res_1, res_2, document_number
 
 
 def document_migration(directories):
@@ -83,21 +85,20 @@ def document_migration(directories):
         if document_number in directories[key] and target_shelf in directories:
             directories[target_shelf].append(document_number)
             directories[key].remove(document_number)
-            print(f"Документ перемещен на полку № {target_shelf} {directories}")
+            res = True
             break
     else:
-        print(f"Некорректно введён номер документа или полка, повторите запрос.")
-        # document_migration(directories)
+        res = False
+    return res
 
 
 def creating_new_shelf(directories):
     shelf_number = input("Для создания полки введите номер полки: ")
     if shelf_number in directories:
-        print(f"Такая полка уже существует, повторите запрос.")
-        # creating_new_shelf(directories)
+        return False, shelf_number
     else:
         directories[shelf_number] = []
-        print(f"Полка создана: {directories}")
+        return True, shelf_number
 
 
 print(
@@ -125,19 +126,36 @@ if __name__ == "__main__":
         elif command == "list" or command == "l":
             output_all_documents(documents)
         elif command == "add" or command == "a":
-            add_new_document(documents, directories)
-            # break
+            result = add_new_document(documents, directories)
+            print(result)
         elif command == "delete" or command == "d":
-            delete_document(documents, directories)
-            # break
+            res_1, res_2, doc_num = delete_document(documents, directories)
+            if res_1:
+                print("Данные удалины из перечня полок: {}".format(directories))
+            if res_2:
+                print("Данные удалены из католога:", *documents, sep="\n")
+            if not res_1 and not res_2:
+                print(
+                    "Документ № {} отсутствует в базе, повторите запрос.".format(
+                        doc_num
+                    )
+                )
         elif command == "move" or command == "m":
-            document_migration(directories)
-            # break
+            if document_migration(directories):
+                print("Документ перемещен: {}".format(directories))
+            else:
+                print(
+                    f"Некорректно введён номер документа или полка, повторите запрос."
+                )
         elif command == "add shelf" or command == "as":
-            creating_new_shelf(directories)
-            # break
+            res, shelf_num = creating_new_shelf(directories)
+            if res:
+                print("Добавлена полка: {}".format(shelf_num))
+                print(directories)
+            else:
+                print("Полка {} уже существует, повторите запрос.".format(shelf_num))
         elif command == "x" or command == "exit":
             print(f"Завершение рабочего сеанаса. До свидания!")
-            break
+            sys.exit()
         else:
             print(f"Некорректно введена команда, повторите запрос.")
