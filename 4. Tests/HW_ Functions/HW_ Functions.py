@@ -11,27 +11,34 @@ def human_output(documents):
     document_number = input("Введите номер документа: ")
     for i in documents:
         if i["number"] == document_number:
-            print(i["name"])
-            break
+            return "Владелец документа: {}".format(i["name"])
     else:
-        print(f"Документ № {document_number} отсутствует в базе, повторите запрос.")
-        human_output(documents)
+        return "Документ № {} отсутствует в базе, повторите запрос.".format(
+            document_number
+        )
 
 
 def document_output(directories):
     document_number = input("Введите номер документа: ")
     for key, value in directories.items():
         if document_number in value:
-            print(f"Документ находится на полке № {key}")
-            break
+            return "Документ находится на полке № {}".format(key)
     else:
-        print(f"Документ № {document_number} отсутствует в базе, повторите запрос.")
-        # document_output(directories)
+        return "Документ № {} отсутствует в базе, повторите запрос.".format(
+            document_number
+        )
 
 
 def output_all_documents(documents):
     for i in documents:
-        print(i["type"], i["number"], i["name"])
+        doc_type = i["type"]
+        doc_number = i["number"]
+        doc_name = i["name"]
+        print(
+            "Имя: {:<18} | документ: {:<10} | № документа: {:<10}".format(
+                doc_name, doc_type, doc_number
+            )
+        )
 
 
 def add_new_document(documents, directories):
@@ -110,14 +117,13 @@ if __name__ == "__main__":
     while run:
         command = input("Введите команду: ")
         if command == "people" or command == "p":
-            human_output(documents)
-            # break
+            result = human_output(documents)
+            print(result)
         elif command == "shelf" or command == "s":
-            document_output(directories)
-            # break
+            result = document_output(directories)
+            print(result)
         elif command == "list" or command == "l":
             output_all_documents(documents)
-            # break
         elif command == "add" or command == "a":
             add_new_document(documents, directories)
             # break
