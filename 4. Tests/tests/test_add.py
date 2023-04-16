@@ -7,7 +7,7 @@ from src.add import (
     output_all_documents,
     add_new_document,
     delete_document,
-    creating_new_shelf
+    creating_new_shelf,
 )
 
 
