@@ -4,3 +4,5 @@ Test.py
 lec№1.py
 lec№2.py
 Test.ipynb
+.pytest_cache
+__init__.py
