@@ -41,11 +41,10 @@ def output_all_documents():
 
 # Создание полки
 def creating_new_shelf(target_shelf):
-    shelf_number = target_shelf
-    if shelf_number in directories:
+    if target_shelf in directories:
         return False
     else:
-        directories[shelf_number] = []
+        directories[target_shelf] = []
         return True
 
 
@@ -83,14 +82,12 @@ def delete_document(document_number):
 # Переместить документ
 def document_migration(document_number, target_shelf):
     for key, value in directories.items():
-        if document_number in value and not isinstance(target_shelf, int):
-            value.remove(document_number)
+        if document_number in directories[key]:
+            directories[key].remove(document_number)
             append_doc_to_shelf(document_number, target_shelf)
-            res = True
-            break
-    else:
-        res = False
-    return res
+            return True
+        else:
+            return False
 
 
 def secretary_program_start():
@@ -162,7 +159,11 @@ def secretary_program_start():
             target_shelf = input("Введите номер целевой полки: ")
             result = document_migration(document_number, target_shelf)
             if result:
-                print("Документ номер {} был перемещен на полку номер {}".format(document_number, target_shelf))
+                print(
+                    "Документ номер {} был перемещен на полку номер {}".format(
+                        document_number, target_shelf
+                    )
+                )
                 print("Перечнь полок: ", directories, sep="\n")
             else:
                 print(
