@@ -1,5 +1,4 @@
 from unittest import TestCase
-from parameterized import parameterized
 import pytest
 from src.yandex import YandexDisk, yandex_info
 
