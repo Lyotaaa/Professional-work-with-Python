@@ -9,6 +9,23 @@ from unittest import TestCase
 from parameterized import parameterized
 import pytest
 
+class Test_Add_Unittest(TestCase):
+    @parameterized.expand(
+        "expected",
+        (
+            {
+                "visit1": ["Москва", "Россия"],
+                "visit3": ["Владимир", "Россия"],
+                "visit7": ["Тула", "Россия"],
+                "visit8": ["Тула", "Россия"],
+                "visit9": ["Курск", "Россия"],
+                "visit10": ["Архангельск", "Россия"],
+            },
+        ),
+    )
+    def test_list_filtering(self, expected):
+        pass
+
 
 class Test_HW_4_Pytest:
     @pytest.mark.parametrize(
