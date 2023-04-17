@@ -35,7 +35,7 @@ class Test_Add_Unittest(TestCase):
 
 
 class Test_Add_Pytest:
-    def test_addadd_new_document(self):
+    def test_add_new_document(self):
         assert add_new_document("+7-912", "invoice", "Иван Иванов", "4") == "4"
         assert add_new_document("+7-912", "invoice", "Иван Иванов", 4) != "4"
 
