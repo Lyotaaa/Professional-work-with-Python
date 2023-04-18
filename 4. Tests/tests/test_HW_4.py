@@ -10,22 +10,41 @@ from parameterized import parameterized
 import pytest
 
 class Test_Add_Unittest(TestCase):
-    @parameterized.expand(
-        "expected",
-        (
-            {
+    def test_list_filtering(self):
+        expected = {
                 "visit1": ["Москва", "Россия"],
                 "visit3": ["Владимир", "Россия"],
                 "visit7": ["Тула", "Россия"],
                 "visit8": ["Тула", "Россия"],
                 "visit9": ["Курск", "Россия"],
                 "visit10": ["Архангельск", "Россия"],
-            },
-        ),
-    )
-    def test_list_filtering(self, expected):
-        pass
+            }
+        geo_logs = list_filtering()
+        result = {}
+        for i in geo_logs:
+            for key, value in i.items():
+                result[key] = value
+        self.assertEqual(result, expected)
 
+    def test_get_unique_id(self):
+        result = get_unique_id()
+        expected = [15, 35, 54, 98, 119, 213]
+        self.assertEqual(result, expected)
+
+    def test_get_sales(self):
+        result = get_sales()
+        expected = "yandex"
+        self.assertEqual(result, expected)
+
+    def test_get_distribution(self):
+        result = get_distribution()
+        expected = [("2", "42.9"), ("3", "57.1")]
+        self.assertEqual(result, expected)
+
+    def test_sort_dict(self):
+        result = sort_dict()
+        expected = {"2018-01-01": {"yandex": {"cpc": {100: {400: {"kek": {2022: "Hello World"}}}}}}}
+        self.assertEqual(result, expected)
 
 class Test_HW_4_Pytest:
     @pytest.mark.parametrize(
