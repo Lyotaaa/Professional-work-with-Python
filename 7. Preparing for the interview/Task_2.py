@@ -4,6 +4,7 @@ noraml_list = ["(((([{}]))))", "[([])((([[[]]])))]{()}", "{{[()]}}"]
 abnormal_list = ["}{}", "{{[(])]}}", "[[{())}]"]
 check_tuple = ("()", "[]", "{}")
 
+
 def check_string(query):
     stack = Stack()
     if len(query) % 2 != 0:
@@ -13,13 +14,13 @@ def check_string(query):
             if i in "([{":
                 stack.push(i)
             elif i not in "([{":
-                # Вариант 1
+    # Вариант 1
                 if stack.peek() + i in check_tuple:
                     stack.pop()
                 else:
                     return False
     return True
-                # Вариант 2
+    # Вариант 2
     #             if stack.peek() == "(" and i == ")":
     #                 stack.pop()
     #             elif stack.peek() == "[" and i == "]":
