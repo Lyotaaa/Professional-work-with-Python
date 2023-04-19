@@ -9,8 +9,7 @@ class Stack:
         self.stack.append(elem)
 
     def pop(self):
-        lost_elem = self.stack.pop()
-        return lost_elem
+        return self.stack.pop()
 
     def peek(self):
         return self.stack[-1]
