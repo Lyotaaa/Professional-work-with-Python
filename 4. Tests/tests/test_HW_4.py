@@ -9,16 +9,17 @@ from unittest import TestCase
 from parameterized import parameterized
 import pytest
 
+
 class Test_Add_Unittest(TestCase):
     def test_list_filtering(self):
         expected = {
-                "visit1": ["Москва", "Россия"],
-                "visit3": ["Владимир", "Россия"],
-                "visit7": ["Тула", "Россия"],
-                "visit8": ["Тула", "Россия"],
-                "visit9": ["Курск", "Россия"],
-                "visit10": ["Архангельск", "Россия"],
-            }
+            "visit1": ["Москва", "Россия"],
+            "visit3": ["Владимир", "Россия"],
+            "visit7": ["Тула", "Россия"],
+            "visit8": ["Тула", "Россия"],
+            "visit9": ["Курск", "Россия"],
+            "visit10": ["Архангельск", "Россия"],
+        }
         geo_logs = list_filtering()
         result = {}
         for i in geo_logs:
@@ -43,8 +44,13 @@ class Test_Add_Unittest(TestCase):
 
     def test_sort_dict(self):
         result = sort_dict()
-        expected = {"2018-01-01": {"yandex": {"cpc": {100: {400: {"kek": {2022: "Hello World"}}}}}}}
+        expected = {
+            "2018-01-01": {
+                "yandex": {"cpc": {100: {400: {"kek": {2022: "Hello World"}}}}}
+            }
+        }
         self.assertEqual(result, expected)
+
 
 class Test_HW_4_Pytest:
     @pytest.mark.parametrize(
