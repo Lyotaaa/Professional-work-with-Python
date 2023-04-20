@@ -5,6 +5,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.header import decode_header
 
+
 class Email:
     def __init__(self, login, password):
         self.login = login
@@ -36,7 +37,9 @@ class Email:
         result, data = login_email.uid("search", None, criterion)
         assert data[0], "There are no letters with current header"
         latest_email_uid = data[0].split()[-1]
-        result, data = login_email.uid("fetch", latest_email_uid.decode("UTF-8"), "(RFC822)")
+        result, data = login_email.uid(
+            "fetch", latest_email_uid.decode("UTF-8"), "(RFC822)"
+        )
         raw_email = data[0][1]
         result_query = email.message_from_string(raw_email.decode("UTF-8"))
         # Дополнительная срока для проверки

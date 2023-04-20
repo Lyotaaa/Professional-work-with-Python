@@ -2,6 +2,7 @@ from configparser import ConfigParser
 from Task_3 import Email
 from pprint import pprint
 
+
 def open_a_token(file_name):
     cofing = ConfigParser()
     cofing.read(file_name)
@@ -9,6 +10,7 @@ def open_a_token(file_name):
     password = cofing["token_info"]["password"]
     recipients = cofing["token_info"]["recipients"]
     return login, password, recipients.split(",")
+
 
 if __name__ == "__main__":
     login_info = open_a_token("confing.ini")
